@@ -23,6 +23,8 @@ public class Tateti extends JFrame implements ActionListener {
     String Jugador1, Jugador2;
     int turno = -1;
     JLabel mensaje;
+    JLabel mensaje2;
+    JLabel mensaje3;
     JLabel puntO;
     JLabel puntX;
     Color colorB;
@@ -49,11 +51,19 @@ public class Tateti extends JFrame implements ActionListener {
         puntosX.setBounds(280, 40, 42, 30);
         this.add(puntosX);
         //Etiqueta bienvenido e indica de quien es el turno
-        mensaje = new JLabel("Bien venido a Tateti");
-        mensaje.setBounds(150, 40, 310, 30);
+        mensaje = new JLabel("Bien venidos al Tateti");
+        mensaje.setBounds(140, 25, 310, 30);
         this.add(mensaje);
+        mensaje2 = new JLabel("de");
+        mensaje2.setBounds(200, 40, 310, 30);
+        this.add(mensaje2);
+        mensaje3 = new JLabel("Jesús G. Arias");
+        mensaje3.setBounds(165, 55, 310, 30);
+        this.add(mensaje3);
         //JButton Resetea el juego pero dejalos puntos del JTextField  
         reset = new JButton("Reset");
+        Font fuenteReset = new Font("Dialog", Font.BOLD, 14);
+        reset.setFont(fuenteReset);
         reset.setBounds(210, 325, 110, 30);
         reset.addActionListener(this);
         this.add(reset);
@@ -61,6 +71,8 @@ public class Tateti extends JFrame implements ActionListener {
         iniciar = new JButton("Juego Nuevo");
         iniciar.setBounds(80, 325, 130, 30);
         iniciar.addActionListener(this);
+        Font fuenteInicia = new Font("Dialog", Font.BOLD, 14);
+        iniciar.setFont(fuenteInicia);
         this.add(iniciar);
         tablero = new JButton[3][3];
         for (int i = 0; i < 3; i++) {
@@ -107,6 +119,8 @@ public class Tateti extends JFrame implements ActionListener {
             //Jugador2=JOptionPane.showInputDialog(this,"Nombre del Jugador 2");
             Jugador2 = "X";
             mensaje.setText("Turno del Jugador " + Jugador1);
+            mensaje2.setText(null);
+            mensaje3.setText(null);
             limpiar();
         } else {
             JButton boton = (JButton) e.getSource();
@@ -132,6 +146,8 @@ public class Tateti extends JFrame implements ActionListener {
                 }
             }
             verificar();
+            Font fuenteReset = new Font("Dialog", Font.BOLD, 14);
+            reset.setFont(fuenteReset);
         }
     }
 
@@ -202,11 +218,13 @@ public class Tateti extends JFrame implements ActionListener {
 //resete el tablero pero deja los puntos
 
     public void reset() {
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 tablero[i][j].setEnabled(true);
                 tablero[i][j].setText("");
                 tablero[i][j].setBackground(colorB);
+
             }
         }
     }
